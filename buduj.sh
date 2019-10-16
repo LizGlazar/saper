@@ -3,4 +3,5 @@ shopt -s expand_aliases
 source ~/.profile
 
 
-javac -d wynik-kompilacji src/main/java/elzbietaglazar/saper/Saper.java
+javac -d wynik-kompilacji src/main/java/elzbietaglazar/saper/*.java
+jar cvmf manifest saper.jar -C wynik-kompilacji elzbietaglazar

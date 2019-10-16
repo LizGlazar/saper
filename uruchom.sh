@@ -1,2 +1,1 @@
-cd wynik-kompilacji
-java elzbietaglazar.saper.Saper
+java -jar saper.jar
