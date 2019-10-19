@@ -4,7 +4,8 @@ public class Saper
 {
     public static void main(String[] args)
     {
-        PasekMenu pasekMenu = new PasekMenu();
+        PomocMenu pomocMenu = new PomocMenu();
+        PasekMenu pasekMenu = new PasekMenu(pomocMenu);
         new GlowneOkno(pasekMenu);
     }
 }
