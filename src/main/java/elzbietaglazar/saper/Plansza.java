@@ -7,20 +7,24 @@ import java.util.List;
 
 public class Plansza
 {
-    public static final int SZEROKOSC = 9;
-    public static final int WYSOKOSC = 9;
+    private final PoziomTrudnosci poziomTrudnosci;
+
+    public Plansza(PoziomTrudnosci poziomTrudnosci)
+    {
+        this.poziomTrudnosci = poziomTrudnosci;
+    }
 
     public GridLayout zwrocLayoutPlanszy()
     {
-        return new GridLayout(SZEROKOSC, WYSOKOSC);
+        return new GridLayout(poziomTrudnosci.wysokosc, poziomTrudnosci.szerokosc);
     }
 
     public List<JButton> zwrocListePrzyciskow()
     {
         List<JButton> listaPrzyciskow = new ArrayList<>();
-        for (int i = 0; i < SZEROKOSC; i++)
+        for (int i = 0; i < poziomTrudnosci.wysokosc; i++)
         {
-            for (int j = 0; j < WYSOKOSC; j++)
+            for (int j = 0; j < poziomTrudnosci.szerokosc; j++)
             {
                 JButton button = new JButton(" ");
                 button.setMinimumSize(new Dimension(15, 15));
