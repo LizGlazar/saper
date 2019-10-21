@@ -4,7 +4,8 @@ public class Saper
 {
     public static void main(String[] args)
     {
-        Plansza plansza = new Plansza(PoziomTrudnosci.EKSPERT);
+        GeneratorPozycjiMin generatorPozycjiMin = new GeneratorPozycjiMin();
+        Plansza plansza = new Plansza(PoziomTrudnosci.EKSPERT, generatorPozycjiMin);
         PomocMenu pomocMenu = new PomocMenu();
         PasekMenu pasekMenu = new PasekMenu(pomocMenu);
         new GlowneOkno(pasekMenu, plansza);

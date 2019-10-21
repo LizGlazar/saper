@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GeneratorPozycjiMin
 {
-    public List<PozycjaMiny> GenerujPozycjeMin(PoziomTrudnosci poziomTrudnosci)
+    public List<PozycjaMiny> generujPozycjeMin(PoziomTrudnosci poziomTrudnosci)
     {
         SecureRandom generatorLiczbLosowych = new SecureRandom();
         List<PozycjaMiny> pozycjeMin = new ArrayList<>();
