@@ -4,7 +4,7 @@ import java.util.List;
 
 public class GeneratorPunktacji
 {
-    public String[][] zwrocTablicePlanszy (int wysokosc, int szerokosc, List<PozycjaMiny> pozycjaMiny)
+    public String[][] zwrocTablicePlanszy (int wysokosc, int szerokosc, List<PozycjaMiny> pozycjeMin)
     {
         String[][] tablicaPlanszy = new String[szerokosc][wysokosc];
 
@@ -12,11 +12,48 @@ public class GeneratorPunktacji
         {
             for (int j = 0; j < szerokosc; j++)
             {
-                int licznikMin = 0;
-
+                if (czyIstniejeMinaNaPozycji(j, i, pozycjeMin))
+                {
+                    tablicaPlanszy[j][i] = "m";
+                }
+                else
+                {
+                    int licznikMin = 0;
+                    if (czyIstniejeLewyGornySasiad(j, i) && czyIstniejeMinaNaPozycji(j - 1, i - 1, pozycjeMin)) {
+                        licznikMin++;
+                    }
+                    if (czyIstniejeGornySasiad(i) && czyIstniejeMinaNaPozycji(j, i - 1, pozycjeMin)) {
+                        licznikMin++;
+                    }
+                    if (czyIstniejePrawyGornySasiad(j, i, szerokosc) && czyIstniejeMinaNaPozycji(j + 1, i - 1, pozycjeMin)) {
+                        licznikMin++;
+                    }
+                    if (czyIstniejeLewySasiad(j) && czyIstniejeMinaNaPozycji(j - 1, i, pozycjeMin)) {
+                        licznikMin++;
+                    }
+                    if (czyIstniejePrawySasiad(j, szerokosc) && czyIstniejeMinaNaPozycji(j + 1, i, pozycjeMin)) {
+                        licznikMin++;
+                    }
+                    if (czyIstniejeLewyDolnySasiad(j, i, wysokosc) && czyIstniejeMinaNaPozycji(j - 1, i + 1, pozycjeMin)) {
+                        licznikMin++;
+                    }
+                    if (czyIstniejeDolnySasiad(i, wysokosc) && czyIstniejeMinaNaPozycji(j, i + 1, pozycjeMin)) {
+                        licznikMin++;
+                    }
+                    if (czyIstniejePrawyDolnySasiad(j, i, szerokosc, wysokosc) && czyIstniejeMinaNaPozycji(j + 1, i + 1, pozycjeMin)) {
+                        licznikMin++;
+                    }
+                    tablicaPlanszy[j][i] = Integer.toString(licznikMin);
+                }
             }
         }
         return tablicaPlanszy;
+    }
+
+    private boolean czyIstniejeMinaNaPozycji(int x, int y, List<PozycjaMiny> pozycjeMin)
+    {
+        PozycjaMiny potencjalnaPozycja = new PozycjaMiny(x, y);
+        return pozycjeMin.contains(potencjalnaPozycja);
     }
 
     //funkcja pomocnicza sprawdzajaca, czy istnieje lewy gorny sasiad
