@@ -4,6 +4,7 @@ import java.util.List;
 
 public class GeneratorPunktacji
 {
+    public static final String OZNACZENIE_MINY = "m";
     public String[][] zwrocTablicePlanszy (int wysokosc, int szerokosc, List<PozycjaMiny> pozycjeMin)
     {
         String[][] tablicaPlanszy = new String[szerokosc][wysokosc];
@@ -14,7 +15,7 @@ public class GeneratorPunktacji
             {
                 if (czyIstniejeMinaNaPozycji(j, i, pozycjeMin))
                 {
-                    tablicaPlanszy[j][i] = "m";
+                    tablicaPlanszy[j][i] = OZNACZENIE_MINY;
                 }
                 else
                 {
