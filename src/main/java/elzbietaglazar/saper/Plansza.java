@@ -16,13 +16,15 @@ public class Plansza implements ActionListener
     private final String[][] punktacja;
     private final List<PrzyciskPlanszy> listaPrzyciskow;
     private final PrzyciskPlanszy[][] tablicaPrzyciskow;
+    private final PolaciePustychPol polaciePustychPol;
 
 
-    public Plansza(PoziomTrudnosci poziomTrudnosci, GeneratorPozycjiMin generatorPozycjiMin, GeneratorPunktacji generatorPunktacji)
+    public Plansza(PoziomTrudnosci poziomTrudnosci, GeneratorPozycjiMin generatorPozycjiMin, GeneratorPunktacji generatorPunktacji, PolaciePustychPol polaciePustychPol)
     {
         this.poziomTrudnosci = poziomTrudnosci;
         this.generatorPozycjiMin = generatorPozycjiMin;
         this.generatorPunktacji = generatorPunktacji;
+        this.polaciePustychPol = polaciePustychPol;
 
         pozycjeMin = generatorPozycjiMin.generujPozycjeMin(poziomTrudnosci);
         punktacja = generatorPunktacji.zwrocTablicePlanszy(poziomTrudnosci.wysokosc, poziomTrudnosci.szerokosc, pozycjeMin);
@@ -55,11 +57,18 @@ public class Plansza implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         PrzyciskPlanszy przyciskPlanszy = (PrzyciskPlanszy) e.getSource();
-        przyciskPlanszy.setEnabled(false);
         int x = przyciskPlanszy.zwrocX();
         int y = przyciskPlanszy.zwrocY();
         String tekst = punktacja[x][y];
-        przyciskPlanszy.setText(tekst);
+        if (tekst.equals("0"))
+        {
+            polaciePustychPol.odslonPustePolaIBrzeg(x, y, tablicaPrzyciskow, punktacja, poziomTrudnosci.szerokosc, poziomTrudnosci.wysokosc);
+        }
+        else
+        {
+            przyciskPlanszy.setEnabled(false);
+            przyciskPlanszy.setText(tekst);
+        }
         if (tekst.equals(GeneratorPunktacji.OZNACZENIE_MINY))
         {
             koniecGryPoKliknieciuNaMine();
