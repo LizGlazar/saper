@@ -2,127 +2,55 @@ package elzbietaglazar.saper;
 import static elzbietaglazar.saper.FunkcjePomocnicze.*;
 public class PolaciePustychPol
 {
-    public void odslonPustePolaIBrzeg(int x, int y, PrzyciskPlanszy[][] tablicaPrzyciskow, String[][] punktacja, int szerokoscPlanszy, int wysokoscPlanszy)
+    public int odslonPustePolaIBrzeg(int x, int y, PrzyciskPlanszy[][] tablicaPrzyciskow, String[][] punktacja, int szerokoscPlanszy, int wysokoscPlanszy)
     {
         String biezacaPunktacja = punktacja[x][y];
         PrzyciskPlanszy przyciskPlanszy = tablicaPrzyciskow[x][y];//TODO ewentualnie wrzucic punktacje do przycisku
         if (biezacaPunktacja.equals("0") && przyciskPlanszy.isEnabled())
         {
+            int licznikOdslonietychPol = 0;
             przyciskPlanszy.setEnabled(false);
             przyciskPlanszy.setText(biezacaPunktacja);
+            licznikOdslonietychPol++;
 
             if (czyIstniejeLewyGornySasiad(x, y))
-            {//TODO przeniesc if i else do prywatnej funkcji
-                if (czySasiadJestPustymPolem(x - 1, y - 1, punktacja))
-                {
-                    odslonPustePolaIBrzeg(x - 1, y - 1, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
-                }
-                else
-                {
-                    PrzyciskPlanszy brzeg = tablicaPrzyciskow[x - 1][y - 1];
-                    brzeg.setEnabled(false);
-                    String tekstBrzegu = punktacja[x - 1][y - 1];
-                    brzeg.setText(tekstBrzegu);
-                }
+            {
+                licznikOdslonietychPol += analizujSasiada(x - 1, y - 1, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
             }
             if (czyIstniejeGornySasiad(y))
             {
-                if (czySasiadJestPustymPolem(x, y - 1, punktacja))
-                {
-                    odslonPustePolaIBrzeg(x, y - 1, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
-                }
-                else
-                {
-                    PrzyciskPlanszy brzeg = tablicaPrzyciskow[x][y - 1];
-                    brzeg.setEnabled(false);
-                    String tekstBrzegu = punktacja[x][y - 1];
-                    brzeg.setText(tekstBrzegu);
-                }
+                licznikOdslonietychPol += analizujSasiada(x, y - 1, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
             }
             if (czyIstniejePrawyGornySasiad(x, y, szerokoscPlanszy))
             {
-                if (czySasiadJestPustymPolem(x + 1, y - 1, punktacja))
-                {
-                    odslonPustePolaIBrzeg( x + 1, y - 1, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
-                }
-                else
-                {
-                    PrzyciskPlanszy brzeg = tablicaPrzyciskow[x + 1][y - 1];
-                    brzeg.setEnabled(false);
-                    String tekstBrzegu = punktacja[x + 1][y - 1];
-                    brzeg.setText(tekstBrzegu);
-                }
+                licznikOdslonietychPol += analizujSasiada(x + 1, y - 1, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
             }
             if (czyIstniejeLewySasiad(x))
             {
-                if (czySasiadJestPustymPolem(x - 1, y, punktacja))
-                {
-                    odslonPustePolaIBrzeg(x - 1, y, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
-                }
-                else
-                {
-                    PrzyciskPlanszy brzeg = tablicaPrzyciskow[x - 1][y];
-                    brzeg.setEnabled(false);
-                    String tekstBrzegu = punktacja[x - 1][y];
-                    brzeg.setText(tekstBrzegu);
-                }
+                licznikOdslonietychPol += analizujSasiada(x - 1, y, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
             }
             if (czyIstniejePrawySasiad(x, szerokoscPlanszy))
             {
-                if (czySasiadJestPustymPolem(x + 1, y, punktacja))
-                {
-                    odslonPustePolaIBrzeg(x + 1, y, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
-                }
-                else
-                {
-                    PrzyciskPlanszy brzeg = tablicaPrzyciskow[x + 1][y];
-                    brzeg.setEnabled(false);
-                    String tekstBrzegu = punktacja[x + 1][y];
-                    brzeg.setText(tekstBrzegu);
-                }
+                licznikOdslonietychPol += analizujSasiada(x + 1, y, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
             }
             if (czyIstniejeLewyDolnySasiad(x, y, wysokoscPlanszy))
             {
-                if (czySasiadJestPustymPolem(x - 1, y + 1, punktacja))
-                {
-                    odslonPustePolaIBrzeg(x - 1, y + 1, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
-                }
-                else
-                {
-                    PrzyciskPlanszy brzeg = tablicaPrzyciskow[x - 1][y + 1];
-                    brzeg.setEnabled(false);
-                    String tekstBrzegu = punktacja[x - 1][y + 1];
-                    brzeg.setText(tekstBrzegu);
-                }
+                licznikOdslonietychPol += analizujSasiada(x - 1, y + 1, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
             }
             if (czyIstniejeDolnySasiad(y, wysokoscPlanszy))
             {
-                if (czySasiadJestPustymPolem(x, y + 1, punktacja))
-                {
-                    odslonPustePolaIBrzeg(x, y + 1, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
-                }
-                else
-                {
-                    PrzyciskPlanszy brzeg = tablicaPrzyciskow[x][y + 1];
-                    brzeg.setEnabled(false);
-                    String tekstBrzegu = punktacja[x][y + 1];
-                    brzeg.setText(tekstBrzegu);
-                }
+                licznikOdslonietychPol += analizujSasiada(x, y + 1, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
             }
             if (czyIstniejePrawyDolnySasiad(x, y, szerokoscPlanszy, wysokoscPlanszy))
             {
-                if (czySasiadJestPustymPolem(x + 1, y + 1, punktacja))
-                {
-                    odslonPustePolaIBrzeg(x + 1, y + 1, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
-                }
-                else
-                {
-                    PrzyciskPlanszy brzeg = tablicaPrzyciskow[x + 1][y + 1];
-                    brzeg.setEnabled(false);
-                    String tekstBrzegu = punktacja[x + 1][y + 1];
-                    brzeg.setText(tekstBrzegu);
-                }
+                licznikOdslonietychPol += analizujSasiada(x + 1, y + 1, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
             }
+
+            return licznikOdslonietychPol;
+        }
+        else
+        {
+            return 0;
         }
     }
 
@@ -131,4 +59,28 @@ public class PolaciePustychPol
         String biezacePole = punktacja[x][y];
         return biezacePole.equals("0");
     }
+
+    private int analizujSasiada(int x, int y, PrzyciskPlanszy[][] tablicaPrzyciskow, String[][] punktacja, int szerokoscPlanszy, int wysokoscPlanszy)
+    {
+        if (czySasiadJestPustymPolem(x, y, punktacja))
+        {
+            return odslonPustePolaIBrzeg(x, y, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
+        }
+        else
+        {
+            PrzyciskPlanszy brzeg = tablicaPrzyciskow[x][y];
+            if (brzeg.isEnabled())
+            {
+                brzeg.setEnabled(false);
+                String tekstBrzegu = punktacja[x][y];
+                brzeg.setText(tekstBrzegu);
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+
 }

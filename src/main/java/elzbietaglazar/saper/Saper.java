@@ -15,7 +15,7 @@ public class Saper
                 GeneratorPozycjiMin generatorPozycjiMin = new GeneratorPozycjiMin();
                 GeneratorPunktacji generatorPunktacji = new GeneratorPunktacji();
                 PolaciePustychPol polaciePustychPol = new PolaciePustychPol();
-                GeneratorPlanszy generatorPlanszy = new GeneratorPlanszy(PoziomTrudnosci.TEST_POLACI, generatorPozycjiMin, generatorPunktacji, polaciePustychPol);
+                GeneratorPlanszy generatorPlanszy = new GeneratorPlanszy(PoziomTrudnosci.MALA_PLANSZA, generatorPozycjiMin, generatorPunktacji, polaciePustychPol);
                 PomocMenu pomocMenu = new PomocMenu();
                 PasekMenu pasekMenu = new PasekMenu(pomocMenu);
                 new GlowneOkno(pasekMenu, generatorPlanszy);

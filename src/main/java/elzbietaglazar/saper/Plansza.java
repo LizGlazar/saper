@@ -15,6 +15,7 @@ public class Plansza implements ActionListener
     private final List<PrzyciskPlanszy> listaPrzyciskow;
     private final PrzyciskPlanszy[][] tablicaPrzyciskow;
     private final PolaciePustychPol polaciePustychPol;
+    private int licznikPolDoOdsloniecia;
 
     public Plansza(PoziomTrudnosci poziomTrudnosci, List<PozycjaMiny> pozycjeMin, String[][] punktacja, PolaciePustychPol polaciePustychPol) {
         this.poziomTrudnosci = poziomTrudnosci;
@@ -23,6 +24,7 @@ public class Plansza implements ActionListener
         this.polaciePustychPol = polaciePustychPol;
         listaPrzyciskow = new ArrayList<>();
         tablicaPrzyciskow = new PrzyciskPlanszy[poziomTrudnosci.szerokosc][poziomTrudnosci.wysokosc];
+        licznikPolDoOdsloniecia = poziomTrudnosci.szerokosc * poziomTrudnosci.wysokosc - poziomTrudnosci.liczbaMin;
 
         for (int i = 0; i < poziomTrudnosci.wysokosc; i++)
         {
@@ -56,16 +58,23 @@ public class Plansza implements ActionListener
         String tekst = punktacja[x][y];
         if (tekst.equals("0"))
         {
-            polaciePustychPol.odslonPustePolaIBrzeg(x, y, tablicaPrzyciskow, punktacja, poziomTrudnosci.szerokosc, poziomTrudnosci.wysokosc);
+            int odslonietePolaPolaci = polaciePustychPol.odslonPustePolaIBrzeg(x, y, tablicaPrzyciskow, punktacja, poziomTrudnosci.szerokosc, poziomTrudnosci.wysokosc);
+            licznikPolDoOdsloniecia -= odslonietePolaPolaci;
         }
         else
         {
             przyciskPlanszy.setEnabled(false);
             przyciskPlanszy.setText(tekst);
+            licznikPolDoOdsloniecia--;
         }
         if (tekst.equals(GeneratorPunktacji.OZNACZENIE_MINY))
         {
             koniecGryPoKliknieciuNaMine();
+        }
+        else if (licznikPolDoOdsloniecia == 0)
+        {
+            zablokujWszystkiePrzyciski();
+            JOptionPane.showMessageDialog(null, "Gratulacje, wygrana!");
         }
     }
 
