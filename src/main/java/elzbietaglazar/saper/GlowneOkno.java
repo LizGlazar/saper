@@ -4,11 +4,11 @@ import javax.swing.*;
 
 public class GlowneOkno extends JFrame
 {
-    public GlowneOkno(PasekMenu pasekMenu, Plansza plansza)
+    public GlowneOkno(PasekMenu pasekMenu, GeneratorPlanszy generatorPlanszy)
     {
         super("Saper");
         setJMenuBar(pasekMenu);
-
+        Plansza plansza = generatorPlanszy.generujPlansze();
         setLayout(plansza.zwrocLayoutPlanszy());
         for (JButton button : plansza.zwrocListePrzyciskow()) {
             add(button);

@@ -10,26 +10,20 @@ import java.util.List;
 public class Plansza implements ActionListener
 {
     private final PoziomTrudnosci poziomTrudnosci;
-    private final GeneratorPozycjiMin generatorPozycjiMin;
-    private final GeneratorPunktacji generatorPunktacji;
     private final List<PozycjaMiny> pozycjeMin;
     private final String[][] punktacja;
     private final List<PrzyciskPlanszy> listaPrzyciskow;
     private final PrzyciskPlanszy[][] tablicaPrzyciskow;
     private final PolaciePustychPol polaciePustychPol;
 
-
-    public Plansza(PoziomTrudnosci poziomTrudnosci, GeneratorPozycjiMin generatorPozycjiMin, GeneratorPunktacji generatorPunktacji, PolaciePustychPol polaciePustychPol)
-    {
+    public Plansza(PoziomTrudnosci poziomTrudnosci, List<PozycjaMiny> pozycjeMin, String[][] punktacja, PolaciePustychPol polaciePustychPol) {
         this.poziomTrudnosci = poziomTrudnosci;
-        this.generatorPozycjiMin = generatorPozycjiMin;
-        this.generatorPunktacji = generatorPunktacji;
+        this.pozycjeMin = pozycjeMin;
+        this.punktacja = punktacja;
         this.polaciePustychPol = polaciePustychPol;
-
-        pozycjeMin = generatorPozycjiMin.generujPozycjeMin(poziomTrudnosci);
-        punktacja = generatorPunktacji.zwrocTablicePlanszy(poziomTrudnosci.wysokosc, poziomTrudnosci.szerokosc, pozycjeMin);
         listaPrzyciskow = new ArrayList<>();
         tablicaPrzyciskow = new PrzyciskPlanszy[poziomTrudnosci.szerokosc][poziomTrudnosci.wysokosc];
+
         for (int i = 0; i < poziomTrudnosci.wysokosc; i++)
         {
             for (int j = 0; j < poziomTrudnosci.szerokosc; j++)
@@ -106,3 +100,4 @@ public class Plansza implements ActionListener
         JOptionPane.showMessageDialog(null, "Koniec gry.");
     }
 }
+
