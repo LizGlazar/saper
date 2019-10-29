@@ -12,7 +12,7 @@ public class PolaciePustychPol
             przyciskPlanszy.setText(biezacaPunktacja);
 
             if (czyIstniejeLewyGornySasiad(x, y))
-            {
+            {//TODO przeniesc if i else do prywatnej funkcji
                 if (czySasiadJestPustymPolem(x - 1, y - 1, punktacja))
                 {
                     odslonPustePolaIBrzeg(x - 1, y - 1, tablicaPrzyciskow, punktacja, szerokoscPlanszy, wysokoscPlanszy);
