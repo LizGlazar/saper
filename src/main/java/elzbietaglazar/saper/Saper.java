@@ -17,7 +17,8 @@ public class Saper
                 PolaciePustychPol polaciePustychPol = new PolaciePustychPol();
                 GeneratorPlanszy generatorPlanszy = new GeneratorPlanszy(PoziomTrudnosci.MALA_PLANSZA, generatorPozycjiMin, generatorPunktacji, polaciePustychPol);
                 PomocMenu pomocMenu = new PomocMenu();
-                PasekMenu pasekMenu = new PasekMenu(pomocMenu);
+                GraMenu graMenu = new GraMenu();
+                PasekMenu pasekMenu = new PasekMenu(pomocMenu, graMenu);
                 new GlowneOkno(pasekMenu, generatorPlanszy);
             }
         });

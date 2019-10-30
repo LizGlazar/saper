@@ -4,10 +4,9 @@ import javax.swing.*;
 
 public class PasekMenu extends JMenuBar
 {
-    public PasekMenu(PomocMenu pomocMenu)
+    public PasekMenu(PomocMenu pomocMenu, GraMenu graMenu)
     {
-        JMenu gra = new JMenu("Gra");
-        add(gra);
+        add(graMenu);
         add(pomocMenu);
     }
 }
