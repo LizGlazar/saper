@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Plansza implements ActionListener
@@ -12,7 +11,6 @@ public class Plansza implements ActionListener
     private final PoziomTrudnosci poziomTrudnosci;
     private final List<PozycjaMiny> pozycjeMin;
     private final String[][] punktacja;
-    private final List<PrzyciskPlanszy> listaPrzyciskow;
     private final PrzyciskPlanszy[][] tablicaPrzyciskow;
     private final PolaciePustychPol polaciePustychPol;
     private int licznikPolDoOdsloniecia;
@@ -22,7 +20,6 @@ public class Plansza implements ActionListener
         this.pozycjeMin = pozycjeMin;
         this.punktacja = punktacja;
         this.polaciePustychPol = polaciePustychPol;
-        listaPrzyciskow = new ArrayList<>();
         tablicaPrzyciskow = new PrzyciskPlanszy[poziomTrudnosci.szerokosc][poziomTrudnosci.wysokosc];
         licznikPolDoOdsloniecia = poziomTrudnosci.szerokosc * poziomTrudnosci.wysokosc - poziomTrudnosci.liczbaMin;
 
@@ -33,20 +30,25 @@ public class Plansza implements ActionListener
                 PrzyciskPlanszy przyciskPlanszy = new PrzyciskPlanszy (j, i);
                 przyciskPlanszy.addActionListener(this);
                 przyciskPlanszy.setMinimumSize(new Dimension(15, 15));
-                listaPrzyciskow.add(przyciskPlanszy);
                 tablicaPrzyciskow[j][i] = przyciskPlanszy;
             }
         }
     }
 
-    public GridLayout zwrocLayoutPlanszy()
+    public JPanel zwrocPanelPlanszy()
     {
-        return new GridLayout(poziomTrudnosci.wysokosc, poziomTrudnosci.szerokosc);
-    }
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(poziomTrudnosci.wysokosc, poziomTrudnosci.szerokosc));
 
-    public List<PrzyciskPlanszy> zwrocListePrzyciskow()
-    {
-        return listaPrzyciskow;
+        for (int i = 0; i < poziomTrudnosci.wysokosc; i++)
+        {
+            for (int j = 0; j < poziomTrudnosci.szerokosc; j++)
+            {
+                panel.add(tablicaPrzyciskow[j][i]);
+            }
+        }
+
+        return panel;
     }
 
     @Override
@@ -98,9 +100,12 @@ public class Plansza implements ActionListener
 
     private void zablokujWszystkiePrzyciski()
     {
-        for (PrzyciskPlanszy przyciskPlanszy : listaPrzyciskow)
+        for (int i = 0; i < poziomTrudnosci.wysokosc; i++)
         {
-            przyciskPlanszy.setEnabled(false);
+            for (int j = 0; j < poziomTrudnosci.szerokosc; j++)
+            {
+                tablicaPrzyciskow[j][i].setEnabled(false);
+            }
         }
     }
 

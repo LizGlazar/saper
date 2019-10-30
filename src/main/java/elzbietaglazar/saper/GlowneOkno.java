@@ -9,10 +9,8 @@ public class GlowneOkno extends JFrame
         super("Saper");
         setJMenuBar(pasekMenu);
         Plansza plansza = generatorPlanszy.generujPlansze();
-        setLayout(plansza.zwrocLayoutPlanszy());
-        for (JButton button : plansza.zwrocListePrzyciskow()) {
-            add(button);
-        }
+        JPanel panel = plansza.zwrocPanelPlanszy();
+        getContentPane().add(panel);
 
         pack();
         setVisible(true);
