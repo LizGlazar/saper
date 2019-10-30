@@ -4,12 +4,9 @@ import javax.swing.*;
 
 public class GraMenu extends JMenu
 {
-    public GraMenu()
+    public GraMenu(MenuItemPoziomTrudnosci poczatkujacy, MenuItemPoziomTrudnosci zaawansowany, MenuItemPoziomTrudnosci ekspert)
     {
         super("Gra");
-        JMenuItem poczatkujacy = new JMenuItem("Poczatkujacy");
-        JMenuItem zaawansowany = new JMenuItem("Zaawansowany");
-        JMenuItem ekspert = new JMenuItem("Ekspert");
         JMenuItem zakoncz = new JMenuItem("Zakoncz");
         add(poczatkujacy);
         add(zaawansowany);

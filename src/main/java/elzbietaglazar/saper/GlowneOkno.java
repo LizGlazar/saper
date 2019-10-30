@@ -1,8 +1,10 @@
 package elzbietaglazar.saper;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class GlowneOkno extends JFrame
+public class GlowneOkno extends JFrame implements ActionListener
 {
     public GlowneOkno(PasekMenu pasekMenu, GeneratorPlanszy generatorPlanszy)
     {
@@ -19,4 +21,16 @@ public class GlowneOkno extends JFrame
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        MenuItemPoziomTrudnosci wybranaPozycjaMenu = (MenuItemPoziomTrudnosci) e.getSource();
+        //TODO
+        //stworzyc pole w klasie typu jpanel
+        //przekazac nowy poziom trudnosci do generatora planszy
+        //wygenerowac nowa plansze
+        //usunac jpanel starej planszy
+        //dodac jpanel nowej planszy
+        //wywowac metode repaint lub podobna
+    }
 }
