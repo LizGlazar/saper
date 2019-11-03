@@ -6,13 +6,17 @@ import java.awt.event.ActionListener;
 
 public class GlowneOkno extends JFrame implements ActionListener
 {
-    public GlowneOkno(PasekMenu pasekMenu, GeneratorPlanszy generatorPlanszy)
+    private JPanel panelPlanszy;
+    private final GeneratorPlanszy generatorPlanszy;
+
+    public GlowneOkno(PasekMenu pasekMenu, GeneratorPlanszy generatorPlanszy, PoziomTrudnosci poziomTrudnosci)
     {
         super("Saper");
+        this.generatorPlanszy = generatorPlanszy;
         setJMenuBar(pasekMenu);
-        Plansza plansza = generatorPlanszy.generujPlansze();
-        JPanel panel = plansza.zwrocPanelPlanszy();
-        getContentPane().add(panel);
+        Plansza plansza = generatorPlanszy.generujPlansze(poziomTrudnosci);
+        panelPlanszy = plansza.zwrocPanelPlanszy();
+        getContentPane().add(panelPlanszy);
 
         pack();
         setVisible(true);
@@ -25,12 +29,12 @@ public class GlowneOkno extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         MenuItemPoziomTrudnosci wybranaPozycjaMenu = (MenuItemPoziomTrudnosci) e.getSource();
-        //TODO
-        //stworzyc pole w klasie typu jpanel
-        //przekazac nowy poziom trudnosci do generatora planszy
-        //wygenerowac nowa plansze
-        //usunac jpanel starej planszy
-        //dodac jpanel nowej planszy
-        //wywowac metode repaint lub podobna
+        PoziomTrudnosci nowyPoziomTrudnosci = wybranaPozycjaMenu.zwrocPoziomTrudnosci();
+        Plansza plansza = generatorPlanszy.generujPlansze(nowyPoziomTrudnosci);
+        getContentPane().remove(panelPlanszy);
+        panelPlanszy = plansza.zwrocPanelPlanszy();
+        getContentPane().add(panelPlanszy);
+        revalidate();
+        repaint();
     }
 }
