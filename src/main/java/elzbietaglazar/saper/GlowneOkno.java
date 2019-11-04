@@ -20,7 +20,7 @@ public class GlowneOkno extends JFrame implements ActionListener
 
         pack();
         setVisible(true);
-//        setSize(300, 100);
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -34,6 +34,7 @@ public class GlowneOkno extends JFrame implements ActionListener
         getContentPane().remove(panelPlanszy);
         panelPlanszy = plansza.zwrocPanelPlanszy();
         getContentPane().add(panelPlanszy);
+        pack();
         revalidate();
         repaint();
     }

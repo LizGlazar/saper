@@ -9,8 +9,7 @@ public class PolaciePustychPol
         if (biezacaPunktacja.equals("0") && przyciskPlanszy.isEnabled())
         {
             int licznikOdslonietychPol = 0;
-            przyciskPlanszy.setEnabled(false);
-            przyciskPlanszy.setText(biezacaPunktacja);
+            przyciskPlanszy.odslon();
             licznikOdslonietychPol++;
 
             if (czyIstniejeLewyGornySasiad(x, y))
@@ -71,9 +70,7 @@ public class PolaciePustychPol
             PrzyciskPlanszy brzeg = tablicaPrzyciskow[x][y];
             if (brzeg.isEnabled())
             {
-                brzeg.setEnabled(false);
-                String tekstBrzegu = punktacja[x][y];
-                brzeg.setText(tekstBrzegu);
+                brzeg.odslon();
                 return 1;
             }
             else

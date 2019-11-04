@@ -27,9 +27,9 @@ public class Plansza implements ActionListener
         {
             for (int j = 0; j < poziomTrudnosci.szerokosc; j++)
             {
-                PrzyciskPlanszy przyciskPlanszy = new PrzyciskPlanszy (j, i);
+                String punktacjaPrzycisku = punktacja[j][i];
+                PrzyciskPlanszy przyciskPlanszy = new PrzyciskPlanszy(j, i, ZarzadcaIkon.OBRAZEK_POLE_ZAKRYTE, ZarzadcaIkon.OBRAZKI_PUNKTACJI.get(punktacjaPrzycisku));
                 przyciskPlanszy.addActionListener(this);
-                przyciskPlanszy.setMinimumSize(new Dimension(15, 15));
                 tablicaPrzyciskow[j][i] = przyciskPlanszy;
             }
         }
@@ -65,13 +65,12 @@ public class Plansza implements ActionListener
         }
         else
         {
-            przyciskPlanszy.setEnabled(false);
-            przyciskPlanszy.setText(tekst);
+            przyciskPlanszy.odslon();
             licznikPolDoOdsloniecia--;
         }
         if (tekst.equals(GeneratorPunktacji.OZNACZENIE_MINY))
         {
-            koniecGryPoKliknieciuNaMine();
+            koniecGryPoKliknieciuNaMine(x, y);
         }
         else if (licznikPolDoOdsloniecia == 0)
         {
@@ -80,21 +79,24 @@ public class Plansza implements ActionListener
         }
     }
 
-    private void koniecGryPoKliknieciuNaMine()
+    private void koniecGryPoKliknieciuNaMine(int xOdslonietejMiny, int yOdslonietejMiny)
     {
-        odslonWszystkieMiny();
+        odslonWszystkieMiny(xOdslonietejMiny, yOdslonietejMiny);
         zablokujWszystkiePrzyciski();
         wyswietlOknoDialogowe();
     }
 
-    private void odslonWszystkieMiny()
+    private void odslonWszystkieMiny(int xOdslonietejMiny, int yOdslonietejMiny)
     {
         for (PozycjaMiny pozycjaMiny : pozycjeMin)
         {
             int x = pozycjaMiny.zwrocX();
             int y = pozycjaMiny.zwrocY();
-            PrzyciskPlanszy przyciskPlanszy = tablicaPrzyciskow[x][y];
-            przyciskPlanszy.setText(GeneratorPunktacji.OZNACZENIE_MINY);
+//            if (x != xOdslonietejMiny && y != yOdslonietejMiny)
+//            {
+                PrzyciskPlanszy przyciskPlanszy = tablicaPrzyciskow[x][y];
+                przyciskPlanszy.odslon(ZarzadcaIkon.OBRAZEK_MINY);
+//            }
         }
     }
 
