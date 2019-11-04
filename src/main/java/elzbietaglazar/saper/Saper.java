@@ -20,7 +20,8 @@ public class Saper
                 MenuItemPoziomTrudnosci poczatkujacy = new MenuItemPoziomTrudnosci("Poczatkujacy", PoziomTrudnosci.POCZATKUJACY);
                 MenuItemPoziomTrudnosci zaawansowany = new MenuItemPoziomTrudnosci("Zaawansowany", PoziomTrudnosci.ZAAWANSOWANY);
                 MenuItemPoziomTrudnosci ekspert = new MenuItemPoziomTrudnosci("Ekspert", PoziomTrudnosci.EKSPERT);
-                GraMenu graMenu = new GraMenu(poczatkujacy, zaawansowany, ekspert);
+                MenuItemZakoncz zakoncz = new MenuItemZakoncz();
+                GraMenu graMenu = new GraMenu(poczatkujacy, zaawansowany, ekspert, zakoncz);
                 PasekMenu pasekMenu = new PasekMenu(pomocMenu, graMenu);
                 GlowneOkno glowneOkno = new GlowneOkno(pasekMenu, generatorPlanszy, PoziomTrudnosci.POCZATKUJACY);
                 poczatkujacy.addActionListener(glowneOkno);
