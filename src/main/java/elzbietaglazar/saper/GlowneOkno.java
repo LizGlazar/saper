@@ -1,6 +1,7 @@
 package elzbietaglazar.saper;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,12 +9,19 @@ public class GlowneOkno extends JFrame implements ActionListener
 {
     private JPanel panelPlanszy;
     private final GeneratorPlanszy generatorPlanszy;
+    private final JLabel wyswietlaczLiczbyMin = new JLabel();
 
     public GlowneOkno(PasekMenu pasekMenu, GeneratorPlanszy generatorPlanszy, PoziomTrudnosci poziomTrudnosci)
     {
         super("Saper");
         this.generatorPlanszy = generatorPlanszy;
         setJMenuBar(pasekMenu);
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        JPanel panelDodatkowychInformacji = new JPanel();
+        panelDodatkowychInformacji.setLayout(new FlowLayout());
+        panelDodatkowychInformacji.add(wyswietlaczLiczbyMin);
+        ustawTekstWyswietlaczaMin(poziomTrudnosci.liczbaMin);
+        getContentPane().add(panelDodatkowychInformacji);
         Plansza plansza = generatorPlanszy.generujPlansze(poziomTrudnosci);
         panelPlanszy = plansza.zwrocPanelPlanszy();
         getContentPane().add(panelPlanszy);
@@ -24,6 +32,10 @@ public class GlowneOkno extends JFrame implements ActionListener
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    private void ustawTekstWyswietlaczaMin(int liczbaMin)
+    {
+        wyswietlaczLiczbyMin.setText("Liczba min: " + liczbaMin);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e)
@@ -34,6 +46,7 @@ public class GlowneOkno extends JFrame implements ActionListener
         getContentPane().remove(panelPlanszy);
         panelPlanszy = plansza.zwrocPanelPlanszy();
         getContentPane().add(panelPlanszy);
+        ustawTekstWyswietlaczaMin(nowyPoziomTrudnosci.liczbaMin);
         pack();
         revalidate();
         repaint();
