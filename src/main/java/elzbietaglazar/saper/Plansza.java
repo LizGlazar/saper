@@ -120,9 +120,20 @@ public class Plansza implements MouseListener
     public void mouseClicked(MouseEvent e)
     {
         PrzyciskPlanszy przyciskPlanszy = (PrzyciskPlanszy) e.getSource();
-        if (SwingUtilities.isLeftMouseButton(e))
+        if (SwingUtilities.isLeftMouseButton(e) && !przyciskPlanszy.zwrocCzyUstawionoFlage())
         {
             obslugaLewegoPrzyciskuMyszy(przyciskPlanszy);
+        }
+        else if (SwingUtilities.isRightMouseButton(e))
+        {
+            if (przyciskPlanszy.zwrocCzyUstawionoFlage())
+            {
+                przyciskPlanszy.zdejmijFlage();
+            }
+            else
+            {
+                przyciskPlanszy.ustawFlage(ZarzadcaIkon.OBRAZEK_FLAGA);
+            }
         }
     }
 
