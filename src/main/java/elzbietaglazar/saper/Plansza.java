@@ -4,9 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
-public class Plansza implements ActionListener
+public class Plansza implements MouseListener
 {
     private final PoziomTrudnosci poziomTrudnosci;
     private final List<PozycjaMiny> pozycjeMin;
@@ -29,7 +31,7 @@ public class Plansza implements ActionListener
             {
                 String punktacjaPrzycisku = punktacja[j][i];
                 PrzyciskPlanszy przyciskPlanszy = new PrzyciskPlanszy(j, i, ZarzadcaIkon.OBRAZEK_POLE_ZAKRYTE, ZarzadcaIkon.OBRAZKI_PUNKTACJI.get(punktacjaPrzycisku));
-                przyciskPlanszy.addActionListener(this);
+                przyciskPlanszy.addMouseListener(this);
                 tablicaPrzyciskow[j][i] = przyciskPlanszy;
             }
         }
@@ -51,10 +53,8 @@ public class Plansza implements ActionListener
         return panel;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e)
+    public void obslugaLewegoPrzyciskuMyszy(PrzyciskPlanszy przyciskPlanszy)
     {
-        PrzyciskPlanszy przyciskPlanszy = (PrzyciskPlanszy) e.getSource();
         int x = przyciskPlanszy.zwrocX();
         int y = przyciskPlanszy.zwrocY();
         String tekst = punktacja[x][y];
@@ -114,6 +114,36 @@ public class Plansza implements ActionListener
     private void wyswietlOknoDialogowe()
     {
         JOptionPane.showMessageDialog(null, "Koniec gry.");
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e)
+    {
+        PrzyciskPlanszy przyciskPlanszy = (PrzyciskPlanszy) e.getSource();
+        if (SwingUtilities.isLeftMouseButton(e))
+        {
+            obslugaLewegoPrzyciskuMyszy(przyciskPlanszy);
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
 
