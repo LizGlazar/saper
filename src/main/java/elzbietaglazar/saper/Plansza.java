@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Plansza implements MouseListener
@@ -16,6 +17,8 @@ public class Plansza implements MouseListener
     private final PrzyciskPlanszy[][] tablicaPrzyciskow;
     private final PolaciePustychPol polaciePustychPol;
     private int licznikPolDoOdsloniecia;
+    private List<ListenerUstawieniaFlagi> listenerzy = new ArrayList<>();
+    private int liczbaUstawionychFlag = 0;
 
     public Plansza(PoziomTrudnosci poziomTrudnosci, List<PozycjaMiny> pozycjeMin, String[][] punktacja, PolaciePustychPol polaciePustychPol) {
         this.poziomTrudnosci = poziomTrudnosci;
@@ -116,6 +119,20 @@ public class Plansza implements MouseListener
         JOptionPane.showMessageDialog(null, "Koniec gry.");
     }
 
+    private void powiadomListenerow()
+    {
+        int aktualnaLiczbaMin = poziomTrudnosci.liczbaMin - liczbaUstawionychFlag;
+        for (ListenerUstawieniaFlagi listener : listenerzy)
+        {
+            listener.zmianaLiczbyMin(aktualnaLiczbaMin);
+        }
+    }
+
+    public void dodajListenera(ListenerUstawieniaFlagi listener)
+    {
+        listenerzy.add(listener);
+    }
+
     @Override
     public void mouseClicked(MouseEvent e)
     {
@@ -129,11 +146,14 @@ public class Plansza implements MouseListener
             if (przyciskPlanszy.zwrocCzyUstawionoFlage())
             {
                 przyciskPlanszy.zdejmijFlage();
+                liczbaUstawionychFlag--;
             }
             else
             {
                 przyciskPlanszy.ustawFlage(ZarzadcaIkon.OBRAZEK_FLAGA);
+                liczbaUstawionychFlag++;
             }
+            powiadomListenerow();
         }
     }
 

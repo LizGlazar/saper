@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GlowneOkno extends JFrame implements ActionListener
+public class GlowneOkno extends JFrame implements ActionListener, ListenerUstawieniaFlagi
 {
     private JPanel panelPlanszy;
     private final GeneratorPlanszy generatorPlanszy;
@@ -23,6 +23,7 @@ public class GlowneOkno extends JFrame implements ActionListener
         ustawTekstWyswietlaczaMin(poziomTrudnosci.liczbaMin);
         getContentPane().add(panelDodatkowychInformacji);
         Plansza plansza = generatorPlanszy.generujPlansze(poziomTrudnosci);
+        plansza.dodajListenera(this);
         panelPlanszy = plansza.zwrocPanelPlanszy();
         getContentPane().add(panelPlanszy);
 
@@ -43,6 +44,7 @@ public class GlowneOkno extends JFrame implements ActionListener
         MenuItemPoziomTrudnosci wybranaPozycjaMenu = (MenuItemPoziomTrudnosci) e.getSource();
         PoziomTrudnosci nowyPoziomTrudnosci = wybranaPozycjaMenu.zwrocPoziomTrudnosci();
         Plansza plansza = generatorPlanszy.generujPlansze(nowyPoziomTrudnosci);
+        plansza.dodajListenera(this);
         getContentPane().remove(panelPlanszy);
         panelPlanszy = plansza.zwrocPanelPlanszy();
         getContentPane().add(panelPlanszy);
@@ -50,5 +52,11 @@ public class GlowneOkno extends JFrame implements ActionListener
         pack();
         revalidate();
         repaint();
+    }
+
+    @Override
+    public void zmianaLiczbyMin(int aktualnaLiczbaMin)
+    {
+        ustawTekstWyswietlaczaMin(aktualnaLiczbaMin);
     }
 }
