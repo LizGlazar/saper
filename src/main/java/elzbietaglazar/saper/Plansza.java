@@ -2,8 +2,6 @@ package elzbietaglazar.saper;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -17,8 +15,11 @@ public class Plansza implements MouseListener
     private final PrzyciskPlanszy[][] tablicaPrzyciskow;
     private final PolaciePustychPol polaciePustychPol;
     private int licznikPolDoOdsloniecia;
-    private List<ListenerUstawieniaFlagi> listenerzy = new ArrayList<>();
+    private List<ListenerUstawieniaFlagi> listenerzyUstawieniaFlagi = new ArrayList<>();
+    private List<ListenerPoczatekGry> listenerzyPoczatekGry = new ArrayList<>();
+    private List<ListenerKoniecGry> listenerzyKoniecGry = new ArrayList<>();
     private int liczbaUstawionychFlag = 0;
+    private boolean czyGraWToku = false;
 
     public Plansza(PoziomTrudnosci poziomTrudnosci, List<PozycjaMiny> pozycjeMin, String[][] punktacja, PolaciePustychPol polaciePustychPol) {
         this.poziomTrudnosci = poziomTrudnosci;
@@ -58,6 +59,11 @@ public class Plansza implements MouseListener
 
     public void obslugaLewegoPrzyciskuMyszy(PrzyciskPlanszy przyciskPlanszy)
     {
+        if (!czyGraWToku)
+        {
+            czyGraWToku = true;
+            powiadomoListenerowOPoczatkuGry();
+        }
         int x = przyciskPlanszy.zwrocX();
         int y = przyciskPlanszy.zwrocY();
         String tekst = punktacja[x][y];
@@ -78,6 +84,7 @@ public class Plansza implements MouseListener
         else if (licznikPolDoOdsloniecia == 0)
         {
             zablokujWszystkiePrzyciski();
+            powiadomoListenerowOKoncuGry();
             JOptionPane.showMessageDialog(null, "Gratulacje, wygrana!");
         }
     }
@@ -116,13 +123,14 @@ public class Plansza implements MouseListener
 
     private void wyswietlOknoDialogowe()
     {
+        powiadomoListenerowOKoncuGry();
         JOptionPane.showMessageDialog(null, "Koniec gry.");
     }
 
     private void powiadomListenerow()
     {
         int aktualnaLiczbaMin = poziomTrudnosci.liczbaMin - liczbaUstawionychFlag;
-        for (ListenerUstawieniaFlagi listener : listenerzy)
+        for (ListenerUstawieniaFlagi listener : listenerzyUstawieniaFlagi)
         {
             listener.zmianaLiczbyMin(aktualnaLiczbaMin);
         }
@@ -130,8 +138,35 @@ public class Plansza implements MouseListener
 
     public void dodajListenera(ListenerUstawieniaFlagi listener)
     {
-        listenerzy.add(listener);
+        listenerzyUstawieniaFlagi.add(listener);
     }
+
+    public void dodajListeneraPoczatekGry(ListenerPoczatekGry listener)
+    {
+        listenerzyPoczatekGry.add(listener);
+    }
+
+    public void dodajListeneraKoniecGry(ListenerKoniecGry listener)
+    {
+        listenerzyKoniecGry.add(listener);
+    }
+
+    private void powiadomoListenerowOKoncuGry()
+    {
+        for (ListenerKoniecGry listener : listenerzyKoniecGry)
+        {
+            listener.zakonczonoGre();
+        }
+    }
+
+    private void powiadomoListenerowOPoczatkuGry()
+    {
+        for (ListenerPoczatekGry listener : listenerzyPoczatekGry)
+        {
+            listener.rozpoczetoGre();
+        }
+    }
+
 
     @Override
     public void mouseClicked(MouseEvent e)

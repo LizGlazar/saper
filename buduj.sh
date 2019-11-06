@@ -4,4 +4,5 @@ source ~/.profile
 
 
 javac -d wynik-kompilacji src/main/java/elzbietaglazar/saper/*.java
+cp src/main/resources/* wynik-kompilacji/elzbietaglazar/saper
 jar cvmf manifest saper.jar -C wynik-kompilacji elzbietaglazar
