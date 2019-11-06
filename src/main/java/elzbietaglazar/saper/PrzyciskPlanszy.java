@@ -37,6 +37,7 @@ public class PrzyciskPlanszy extends JButton
     {
         return x;
     }
+
     public int zwrocY()
     {
         return y;

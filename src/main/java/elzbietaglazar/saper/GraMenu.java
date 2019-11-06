@@ -12,6 +12,5 @@ public class GraMenu extends JMenu
         add(ekspert);
         addSeparator();
         add(zakoncz);
-
     }
 }

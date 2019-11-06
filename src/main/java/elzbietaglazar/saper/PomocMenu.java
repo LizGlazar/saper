@@ -13,6 +13,7 @@ public class PomocMenu extends JMenu
         add(oProgramie);
         oProgramie.addActionListener(new ActionListener()
         {
+            @Override
             public void actionPerformed(ActionEvent ae)
             {
                 JOptionPane.showMessageDialog(PomocMenu.this, "Elżbieta Glazar \u2014 Saper",

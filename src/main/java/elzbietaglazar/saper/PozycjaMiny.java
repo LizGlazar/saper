@@ -24,7 +24,8 @@ public class PozycjaMiny
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PozycjaMiny that = (PozycjaMiny) o;
@@ -33,15 +34,8 @@ public class PozycjaMiny
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return Objects.hash(x, y);
-    }
-
-    @Override
-    public String toString() {
-        return "PozycjaMiny{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
     }
 }

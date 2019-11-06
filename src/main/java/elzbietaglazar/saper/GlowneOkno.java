@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 public class GlowneOkno extends JFrame implements ActionListener, ListenerUstawieniaFlagi, ListenerPoczatekGry, ListenerKoniecGry
 {
     private static final int TYKNIECIA_ZEGARA = 1000;
+
     private JPanel panelPlanszy;
     private final GeneratorPlanszy generatorPlanszy;
     private final JLabel wyswietlaczLiczbyMin = new JLabel();

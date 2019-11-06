@@ -7,7 +7,8 @@ import static elzbietaglazar.saper.FunkcjePomocnicze.*;
 public class GeneratorPunktacji
 {
     public static final String OZNACZENIE_MINY = "m";
-    public String[][] zwrocTablicePlanszy (int wysokosc, int szerokosc, List<PozycjaMiny> pozycjeMin)
+
+    public String[][] zwrocTablicePlanszy(int wysokosc, int szerokosc, List<PozycjaMiny> pozycjeMin)
     {
         String[][] tablicaPlanszy = new String[szerokosc][wysokosc];
 
@@ -52,7 +53,4 @@ public class GeneratorPunktacji
         }
         return tablicaPlanszy;
     }
-
-
 }
-

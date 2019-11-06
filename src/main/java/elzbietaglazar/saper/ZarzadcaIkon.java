@@ -1,11 +1,7 @@
 package elzbietaglazar.saper;
 
-import com.sun.org.apache.xpath.internal.axes.HasPositionalPredChecker;
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,16 +19,17 @@ public class ZarzadcaIkon
     public static final ImageIcon OBRAZEK_7 = wczytajObrazek("/7.png");
     public static final ImageIcon OBRAZEK_8 = wczytajObrazek("/8.png");
     public static final ImageIcon OBRAZEK_FLAGA = wczytajObrazek("/flag.png");
-    public static final ImageIcon OBRAZEK_OFLAGOWANA_MINA = wczytajObrazek("/flagmine.png");
     public static final ImageIcon OBRAZEK_POLE_ZAKRYTE = wczytajObrazek("/hidden.png");
-    public static final ImageIcon OBRAZEK_CZERWONA_MINA = wczytajObrazek("/redmine.png");
     public static final Map<String, ImageIcon> OBRAZKI_PUNKTACJI = zbudujObrazkiPunktacji();
 
     private static ImageIcon wczytajObrazek(String ikona)
     {
-        try {
+        try
+        {
             return new ImageIcon(ImageIO.read(ZarzadcaIkon.class.getResourceAsStream(ikona)));
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             throw new IllegalStateException(e);
         }
     }
@@ -49,7 +46,7 @@ public class ZarzadcaIkon
         obrazkiPunktacji.put("6", OBRAZEK_6);
         obrazkiPunktacji.put("7", OBRAZEK_7);
         obrazkiPunktacji.put("8", OBRAZEK_8);
-        obrazkiPunktacji.put("m", OBRAZEK_CZERWONA_MINA);
+        obrazkiPunktacji.put("m", OBRAZEK_MINY);
         return obrazkiPunktacji;
     }
 }

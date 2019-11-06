@@ -79,7 +79,7 @@ public class Plansza implements MouseListener
         }
         if (tekst.equals(GeneratorPunktacji.OZNACZENIE_MINY))
         {
-            koniecGryPoKliknieciuNaMine(x, y);
+            koniecGryPoKliknieciuNaMine();
         }
         else if (licznikPolDoOdsloniecia == 0)
         {
@@ -89,24 +89,21 @@ public class Plansza implements MouseListener
         }
     }
 
-    private void koniecGryPoKliknieciuNaMine(int xOdslonietejMiny, int yOdslonietejMiny)
+    private void koniecGryPoKliknieciuNaMine()
     {
-        odslonWszystkieMiny(xOdslonietejMiny, yOdslonietejMiny);
+        odslonWszystkieMiny();
         zablokujWszystkiePrzyciski();
         wyswietlOknoDialogowe();
     }
 
-    private void odslonWszystkieMiny(int xOdslonietejMiny, int yOdslonietejMiny)
+    private void odslonWszystkieMiny()
     {
         for (PozycjaMiny pozycjaMiny : pozycjeMin)
         {
             int x = pozycjaMiny.zwrocX();
             int y = pozycjaMiny.zwrocY();
-//            if (x != xOdslonietejMiny && y != yOdslonietejMiny)
-//            {
-                PrzyciskPlanszy przyciskPlanszy = tablicaPrzyciskow[x][y];
-                przyciskPlanszy.odslon(ZarzadcaIkon.OBRAZEK_MINY);
-//            }
+            PrzyciskPlanszy przyciskPlanszy = tablicaPrzyciskow[x][y];
+            przyciskPlanszy.odslon(ZarzadcaIkon.OBRAZEK_MINY);
         }
     }
 
@@ -193,23 +190,26 @@ public class Plansza implements MouseListener
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(MouseEvent e)
+    {
 
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(MouseEvent e)
+    {
 
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent e)
+    {
 
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(MouseEvent e)
+    {
 
     }
 }
-

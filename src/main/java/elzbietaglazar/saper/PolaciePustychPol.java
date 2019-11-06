@@ -1,11 +1,13 @@
 package elzbietaglazar.saper;
+
 import static elzbietaglazar.saper.FunkcjePomocnicze.*;
+
 public class PolaciePustychPol
 {
     public int odslonPustePolaIBrzeg(int x, int y, PrzyciskPlanszy[][] tablicaPrzyciskow, String[][] punktacja, int szerokoscPlanszy, int wysokoscPlanszy)
     {
         String biezacaPunktacja = punktacja[x][y];
-        PrzyciskPlanszy przyciskPlanszy = tablicaPrzyciskow[x][y];//TODO ewentualnie wrzucic punktacje do przycisku
+        PrzyciskPlanszy przyciskPlanszy = tablicaPrzyciskow[x][y];
         if (biezacaPunktacja.equals("0") && przyciskPlanszy.isEnabled())
         {
             int licznikOdslonietychPol = 0;
