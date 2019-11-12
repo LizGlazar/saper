@@ -4,8 +4,16 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Klasa implementująca menu Pomoc.
+ * @author Elżbieta Glazar
+ */
 public class PomocMenu extends JMenu
 {
+    /**
+     * Konstruktor dodaje element menu O programie. Po kliknięciu na element menu wyświetlane jest
+     * okienko dialogowe z informacją.
+     */
     public PomocMenu()
     {
         super("Pomoc");

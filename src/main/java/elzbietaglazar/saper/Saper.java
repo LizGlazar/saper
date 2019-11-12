@@ -2,8 +2,16 @@ package elzbietaglazar.saper;
 
 import javax.swing.*;
 
+/**
+ * Główna klasa gry. Tutaj tworzone są wszystkie obiekty wraz z ich zależnościami.
+ * @author Elżbieta Glazar
+ */
 public class Saper
 {
+    /**
+     * Metoda w wątku Swinga tworzy wszystkie niezbędne obiekty gry wraz z ich zależnościami
+     * @param args argumenty programu
+     */
     public static void main(String[] args)
     {
         //przeniesienie tworzenia planszy i obiektow pomocniczych do watku Swinga
