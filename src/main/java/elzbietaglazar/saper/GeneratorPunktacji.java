@@ -42,28 +42,36 @@ public class GeneratorPunktacji
                 else
                 {
                     int licznikMin = 0;
-                    if (czyIstniejeLewyGornySasiad(j, i) && czyIstniejeMinaNaPozycji(j - 1, i - 1, pozycjeMin)) {
+                    if (czyIstniejeLewyGornySasiad(j, i) && czyIstniejeMinaNaPozycji(j - 1, i - 1, pozycjeMin))
+                    {
                         licznikMin++;
                     }
-                    if (czyIstniejeGornySasiad(i) && czyIstniejeMinaNaPozycji(j, i - 1, pozycjeMin)) {
+                    if (czyIstniejeGornySasiad(i) && czyIstniejeMinaNaPozycji(j, i - 1, pozycjeMin))
+                    {
                         licznikMin++;
                     }
-                    if (czyIstniejePrawyGornySasiad(j, i, szerokosc) && czyIstniejeMinaNaPozycji(j + 1, i - 1, pozycjeMin)) {
+                    if (czyIstniejePrawyGornySasiad(j, i, szerokosc) && czyIstniejeMinaNaPozycji(j + 1, i - 1, pozycjeMin))
+                    {
                         licznikMin++;
                     }
-                    if (czyIstniejeLewySasiad(j) && czyIstniejeMinaNaPozycji(j - 1, i, pozycjeMin)) {
+                    if (czyIstniejeLewySasiad(j) && czyIstniejeMinaNaPozycji(j - 1, i, pozycjeMin))
+                    {
                         licznikMin++;
                     }
-                    if (czyIstniejePrawySasiad(j, szerokosc) && czyIstniejeMinaNaPozycji(j + 1, i, pozycjeMin)) {
+                    if (czyIstniejePrawySasiad(j, szerokosc) && czyIstniejeMinaNaPozycji(j + 1, i, pozycjeMin))
+                    {
                         licznikMin++;
                     }
-                    if (czyIstniejeLewyDolnySasiad(j, i, wysokosc) && czyIstniejeMinaNaPozycji(j - 1, i + 1, pozycjeMin)) {
+                    if (czyIstniejeLewyDolnySasiad(j, i, wysokosc) && czyIstniejeMinaNaPozycji(j - 1, i + 1, pozycjeMin))
+                    {
                         licznikMin++;
                     }
-                    if (czyIstniejeDolnySasiad(i, wysokosc) && czyIstniejeMinaNaPozycji(j, i + 1, pozycjeMin)) {
+                    if (czyIstniejeDolnySasiad(i, wysokosc) && czyIstniejeMinaNaPozycji(j, i + 1, pozycjeMin))
+                    {
                         licznikMin++;
                     }
-                    if (czyIstniejePrawyDolnySasiad(j, i, szerokosc, wysokosc) && czyIstniejeMinaNaPozycji(j + 1, i + 1, pozycjeMin)) {
+                    if (czyIstniejePrawyDolnySasiad(j, i, szerokosc, wysokosc) && czyIstniejeMinaNaPozycji(j + 1, i + 1, pozycjeMin))
+                    {
                         licznikMin++;
                     }
                     tablicaPlanszy[j][i] = Integer.toString(licznikMin);
