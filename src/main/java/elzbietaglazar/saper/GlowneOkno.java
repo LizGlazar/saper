@@ -112,6 +112,7 @@ public class GlowneOkno extends JFrame implements ActionListener, ListenerUstawi
             panelPlanszy = plansza.zwrocPanelPlanszy();
             getContentPane().add(panelPlanszy);
             ustawTekstWyswietlaczaMin(nowyPoziomTrudnosci.liczbaMin);
+            stoper.stop();
             stoper = new Timer(TYKNIECIA_ZEGARA, this);
             licznikSekund = 0;
             wyswietlaczStopera.setText("");
