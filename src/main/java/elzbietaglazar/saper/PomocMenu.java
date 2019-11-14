@@ -24,7 +24,7 @@ public class PomocMenu extends JMenu
             @Override
             public void actionPerformed(ActionEvent ae)
             {
-                JOptionPane.showMessageDialog(PomocMenu.this, "Elżbieta Glazar \u2014 Saper",
+                JOptionPane.showMessageDialog(PomocMenu.this, "El\u017cbieta Glazar \u2014 Saper",
                         "Programowanie obiektowe", JOptionPane.INFORMATION_MESSAGE);
             }
         });
